@@ -4,7 +4,7 @@ This component provides a reusable input field specifically designed for enterin
 
 ---
 
-## Component Code
+# Component Code
 
 Here's the full code for the `FahrenheitInput.jsx` component:
 
@@ -61,7 +61,9 @@ export default TemperatureConverter;
 
 ```
 
-##CelsiusInput Component
+
+
+#CelsiusInput Component
 This component provides a reusable input field specifically designed for entering Celsius temperature values. It's styled with Tailwind CSS for a modern, dark-themed appearance.
 
 Component Code

@@ -1,12 +1,59 @@
-# React + Vite
+# FahrenheitInput Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This component provides a reusable input field specifically designed for entering Fahrenheit temperature values. It's styled with Tailwind CSS for a modern, dark-themed appearance.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Component Code
 
-## Expanding the ESLint configuration
+Here's the full code for the `FahrenheitInput.jsx` component:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```javascript
+function FahrenheitInput({ value, onChange }) {
+  return (
+    <div>
+      <label className="block mb-1 font-medium">Fahrenheit</label>
+      <input
+        className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        type="number"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
+  );
+}
+
+export default FahrenheitInput;
+Props
+The FahrenheitInput component accepts the following props:
+
+value (number or string): The current value displayed in the input field. This should typically be a state variable from the parent component.
+onChange (function): A callback function that triggers when the input value changes. It receives the new input value as its argument (e.target.value).
+Usage
+To use this component, import it into your parent React component and pass the necessary value and onChange props.
+
+JavaScript
+
+import React, { useState } from 'react';
+import FahrenheitInput from './FahrenheitInput'; // Adjust path as needed
+
+function TemperatureConverter() {
+  const [fahrenheitTemp, setFahrenheitTemp] = useState('');
+
+  const handleFahrenheitChange = (newValue) => {
+    setFahrenheitTemp(newValue);
+    // You would typically add conversion logic here
+    // e.g., convert to Celsius if a Celsius input is also present
+  };
+
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Enter Temperature</h2>
+      <FahrenheitInput value={fahrenheitTemp} onChange={handleFahrenheitChange} />
+      {/* You could display converted values or other UI here */}
+      <p className="mt-4">Current Fahrenheit: {fahrenheitTemp}</p>
+    </div>
+  );
+}
+
+export default TemperatureConverter;
